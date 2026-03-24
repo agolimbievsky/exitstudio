@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 
 interface Founder {
@@ -14,6 +15,7 @@ const founders: Founder[] = [
   {
     name: "Kanishka",
     role: "Managing Director & Founder",
+    photo: "/founders/kanishka.jpg",
     bio: "I spent 7 years building a pay-for-performance digital ads agency that scaled 50+ SaaS, DTC, and service companies to seven- and eight-figure revenue, leading to multiple exits. The model forced something most agencies never face: we couldn't earn unless our clients actually grew. That accountability, over years, built the most rigorous growth system I know.",
     lesson:
       "World-class systems only work when they start with real customer empathy. Technology amplifies what you understand. It cannot replace it.",
@@ -21,6 +23,7 @@ const founders: Founder[] = [
   {
     name: "Aaron",
     role: "Partner",
+    photo: "/founders/aaron.jpg",
     bio: "I grew my company from zero to $40M in annual revenue and 200 employees in three years. Not gradually. All at once, with real stakes: hundreds of people counting on decisions I made in real time, with incomplete information and everything on the line.",
     lesson:
       "Advisors tell you what to do. Partners figure out how to do it alongside you, with real skin in the game. I learned the difference the hard way, and it is the only reason I am here.",
@@ -28,6 +31,7 @@ const founders: Founder[] = [
   {
     name: "Tyrone",
     role: "Partner",
+    photo: "/founders/tyrone.jpg",
     bio: "I built an entirely new consumer product category, grew to 22 employees and over $30M in sales, and was ranked the 12th fastest-growing consumer brand in the U.S. by INC Magazine. Fast growth almost broke the business before it scaled it. Cash flow timing, demand forecasting, inventory risk: I had to master all of it while the plane was already in the air.",
     lesson:
       "Growth exposes every gap you have not patched yet. I learned to look six, nine, twelve months ahead and make decisions with clarity instead of reacting to whatever is in front of me.",
@@ -35,6 +39,7 @@ const founders: Founder[] = [
   {
     name: "Alex",
     role: "Partner",
+    photo: "/founders/alex.jpg",
     bio: "I failed my first two businesses. Not from lack of effort: I had mentors, read 50+ books a year, and worked relentlessly. They failed because I was applying strategies proven for someone else's context. After rebuilding from that understanding, I went on to sell two technology companies for over $20M in four years.",
     lesson:
       "The lesson was never what to do. It was when and how to apply it. Every company has its own market, its own timing, its own constraints. Generic strategies do not survive contact with reality.",
@@ -42,6 +47,7 @@ const founders: Founder[] = [
   {
     name: "Dylan",
     role: "Partner",
+    photo: "/founders/dylan.jpg",
     bio: "I have spent 6+ years building go-to-market strategies and brand campaigns that turned unknown companies into category leaders across eCommerce, SaaS, and service businesses. I specialize in finding the offer that unlocks a market before it is obvious: the right positioning, the right message, the right moment. I leverage AI, automation, and systematic market intelligence to execute at a pace most teams cannot match.",
     lesson:
       "Most growth problems are not marketing problems. They are clarity problems. The sharpest competitive advantage is understanding what your customer wants before they can tell you.",
@@ -60,10 +66,12 @@ function FounderRow({ founder, index }: FounderRowProps) {
     <div className="w-full flex-shrink-0 lg:w-[340px] xl:w-[380px]">
       <div className="relative aspect-[4/5] overflow-hidden bg-cream-dark">
         {founder.photo ? (
-          <img
+          <Image
             src={founder.photo}
             alt={founder.name}
-            className="h-full w-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 380px"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">

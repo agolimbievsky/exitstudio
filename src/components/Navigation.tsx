@@ -4,10 +4,15 @@ import { useEffect, useState } from "react";
 
 interface NavigationProps {
   onApplyClick: () => void;
+  // darkHero: split hero — cream left panel (logo), dark right panel (links at lg+).
+  //   Only desktop nav-right items go light.
   darkHero?: boolean;
+  // darkFull: fully dark hero — entire nav background is dark at all breakpoints.
+  //   All nav items go light regardless of viewport width.
+  darkFull?: boolean;
 }
 
-export default function Navigation({ onApplyClick, darkHero }: NavigationProps) {
+export default function Navigation({ onApplyClick, darkHero, darkFull }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -16,7 +21,13 @@ export default function Navigation({ onApplyClick, darkHero }: NavigationProps) 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const onDark = darkHero && !scrolled;
+  // Nav is over some dark context (either split or full) and hasn't scrolled yet.
+  const onDark = (darkHero || darkFull) && !scrolled;
+  // Logo only goes light when the ENTIRE background is dark (constitution page etc.)
+  const logoLight = darkFull && !scrolled;
+  // Links go light at all breakpoints on a fully dark page; only at lg+ on a split hero.
+  const linksFullLight = darkFull && !scrolled;
+  const linksSplitLight = darkHero && !scrolled;
 
   return (
     <nav
@@ -30,7 +41,9 @@ export default function Navigation({ onApplyClick, darkHero }: NavigationProps) 
         <div className="flex h-16 items-center justify-between lg:h-20">
           <a
             href="/"
-            className="font-serif text-xl font-semibold tracking-tight lg:text-2xl transition-colors duration-300 text-warm-black"
+            className={`font-serif text-xl font-semibold tracking-tight lg:text-2xl transition-colors duration-300 ${
+              logoLight ? "text-text-on-dark" : "text-warm-black"
+            }`}
           >
             ExitStudio
           </a>
@@ -39,7 +52,9 @@ export default function Navigation({ onApplyClick, darkHero }: NavigationProps) 
             <a
               href="/constitution"
               className={`font-sans text-sm font-medium transition-colors ${
-                onDark
+                linksFullLight
+                  ? "text-text-on-dark/70 hover:text-text-on-dark"
+                  : linksSplitLight
                   ? "text-text-on-light/70 hover:text-text-on-light lg:text-text-on-dark/70 lg:hover:text-text-on-dark"
                   : "text-text-on-light/70 hover:text-text-on-light"
               }`}

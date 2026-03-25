@@ -72,7 +72,7 @@ export default function ConstitutionClient() {
 
   return (
     <>
-      <Navigation onApplyClick={() => setModalOpen(true)} darkHero={true} />
+      <Navigation onApplyClick={() => setModalOpen(true)} darkFull={true} />
 
       <main>
         {/* ── Hero ─────────────────────────────────── */}

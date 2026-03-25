@@ -31,7 +31,7 @@ export default function Hero({ onApplyClick }: HeroProps) {
                 See if you qualify
               </button>
               <a
-                href="#model"
+                href="#how-it-works"
                 className="group inline-flex items-center gap-2 font-sans text-sm font-medium text-text-on-light/70 transition-colors hover:text-text-on-light"
               >
                 How the partnership works

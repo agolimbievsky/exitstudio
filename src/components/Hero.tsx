@@ -20,8 +20,8 @@ export default function Hero({ onApplyClick }: HeroProps) {
               We only win when you do.
             </p>
             <p className="mt-4 max-w-md font-sans text-base leading-relaxed text-muted-light">
-              No fees. No retainers. We embed our operators and systems in
-              exchange for equity we earn through the growth we create together.
+              No fees. No retainers. We embed our operators and systems and
+              earn based entirely on the growth we create together.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <button

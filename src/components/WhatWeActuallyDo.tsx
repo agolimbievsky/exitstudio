@@ -6,22 +6,22 @@ const disciplines = [
   {
     name: "Performance Marketing",
     description:
-      "Campaign infrastructure built to convert at scale, not just drive traffic.",
+      "We start here on every partnership. Paid media is the fastest signal on whether a business can profitably scale. The data we generate shapes everything we do next.",
   },
   {
-    name: "Operational Systems",
+    name: "Operations & Bottleneck Removal",
     description:
-      "Processes and tooling built to hold under real growth pressure and scale as the business does.",
+      "Every company hits a different wall: hiring, fulfillment, supply chain, manufacturing. We identify the specific constraint and build around it. No fixed playbook.",
   },
   {
-    name: "Execution Teams",
+    name: "Financial Architecture",
     description:
-      "Embedded operators, not consultants. We work inside the machine, not around it.",
+      "Before we scale anything, we model the unit economics. Contribution margin, payback periods, cash flow gaps. We run these numbers like we own equity in the outcome -- because we do.",
   },
   {
-    name: "Growth Playbooks",
+    name: "Embedded Execution",
     description:
-      "Documented, repeatable systems your team owns and can build on indefinitely.",
+      "We do not send recommendations. We send operators who work inside your business, own deliverables, and are accountable to the projections we made at the start.",
   },
 ];
 

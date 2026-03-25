@@ -33,7 +33,10 @@ export default function FAQ() {
     <section className="bg-cream py-28 sm:py-36 lg:py-44">
       <div className="mx-auto max-w-3xl px-6 lg:px-12">
         <ScrollReveal>
-          <p className="label label-on-light mb-16">Common Questions</p>
+          <h2 className="font-serif text-3xl font-medium leading-snug text-warm-black sm:text-4xl">
+            The questions you&rsquo;re likely already asking.
+          </h2>
+          <p className="label label-on-light mt-6 mb-16">Common Questions</p>
         </ScrollReveal>
 
         <div>
@@ -59,7 +62,7 @@ export default function FAQ() {
                 </button>
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    open === i ? "max-h-64 pb-7" : "max-h-0"
+                    open === i ? "max-h-96 pb-7" : "max-h-0"
                   }`}
                 >
                   <p className="font-sans text-base leading-relaxed text-muted-light">

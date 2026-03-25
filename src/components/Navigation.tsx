@@ -40,7 +40,7 @@ export default function Navigation({ onApplyClick, darkHero }: NavigationProps) 
           <div className="flex items-center gap-8">
             <a
               href="/constitution"
-              className={`hidden font-sans text-sm font-medium transition-colors sm:block ${
+              className={`font-sans text-sm font-medium transition-colors ${
                 onDark
                   ? "text-text-on-dark/70 hover:text-text-on-dark"
                   : "text-text-on-light/70 hover:text-text-on-light"

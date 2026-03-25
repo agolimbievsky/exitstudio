@@ -20,7 +20,7 @@ export default function PageClient() {
 
   return (
     <>
-      <Navigation onApplyClick={openModal} />
+      <Navigation onApplyClick={openModal} darkHero={true} />
       <main>
         <Hero onApplyClick={openModal} />
         <WhyThisModelExists />

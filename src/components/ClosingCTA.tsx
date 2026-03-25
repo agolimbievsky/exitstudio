@@ -33,7 +33,7 @@ export default function ClosingCTA({ onApplyClick }: ClosingCTAProps) {
           <div className="mt-10">
             <button
               onClick={onApplyClick}
-              className="inline-flex items-center justify-center rounded-sm bg-warm-black px-9 py-4 font-sans text-sm font-medium tracking-wide text-cream transition-all hover:bg-warm-black-light"
+              className="inline-flex items-center justify-center rounded-sm border border-warm-black bg-warm-black px-9 py-4 font-sans text-sm font-medium tracking-wide text-cream transition-all hover:border-gold hover:bg-gold hover:text-warm-black"
             >
               See if you qualify
             </button>

@@ -30,9 +30,7 @@ export default function Navigation({ onApplyClick, darkHero }: NavigationProps) 
         <div className="flex h-16 items-center justify-between lg:h-20">
           <a
             href="/"
-            className={`font-serif text-xl font-semibold tracking-tight lg:text-2xl transition-colors duration-300 ${
-              onDark ? "text-text-on-dark" : "text-warm-black"
-            }`}
+            className="font-serif text-xl font-semibold tracking-tight lg:text-2xl transition-colors duration-300 text-warm-black"
           >
             ExitStudio
           </a>
@@ -42,7 +40,7 @@ export default function Navigation({ onApplyClick, darkHero }: NavigationProps) 
               href="/constitution"
               className={`font-sans text-sm font-medium transition-colors ${
                 onDark
-                  ? "text-text-on-dark/70 hover:text-text-on-dark"
+                  ? "text-text-on-light/70 hover:text-text-on-light lg:text-text-on-dark/70 lg:hover:text-text-on-dark"
                   : "text-text-on-light/70 hover:text-text-on-light"
               }`}
             >

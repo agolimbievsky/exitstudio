@@ -37,20 +37,29 @@ export default function HowItWorks() {
           <p className="label mb-16">How the Partnership Works</p>
         </ScrollReveal>
 
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
-          {steps.map((step) => (
+        <div>
+          {steps.map((step, i) => (
             <ScrollReveal key={step.number}>
-              <div>
-                <span className="font-serif text-4xl font-light text-gold lg:text-5xl">
-                  {step.number}
-                </span>
-                <div className="gold-rule my-6" />
-                <h3 className="font-serif text-xl font-semibold text-text-on-dark lg:text-2xl">
-                  {step.title}
-                </h3>
-                <p className="mt-4 font-sans text-base leading-relaxed text-muted-dark">
-                  {step.description}
-                </p>
+              <div
+                className={`flex items-start gap-8 py-10 sm:gap-12 ${
+                  i > 0 ? "border-t border-text-on-dark/15" : ""
+                }`}
+              >
+                {/* Number column — fixed width */}
+                <div className="w-12 flex-shrink-0 sm:w-16">
+                  <span className="font-serif text-4xl font-light text-gold lg:text-5xl">
+                    {step.number}
+                  </span>
+                </div>
+                {/* Content column */}
+                <div className="flex-1 pb-2">
+                  <h3 className="font-serif text-xl font-semibold text-text-on-dark lg:text-2xl">
+                    {step.title}
+                  </h3>
+                  <p className="mt-4 font-sans text-base leading-relaxed text-muted-dark">
+                    {step.description}
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
           ))}

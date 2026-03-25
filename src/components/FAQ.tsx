@@ -33,10 +33,9 @@ export default function FAQ() {
     <section className="bg-cream py-28 sm:py-36 lg:py-44">
       <div className="mx-auto max-w-3xl px-6 lg:px-12">
         <ScrollReveal>
-          <h2 className="font-serif text-3xl font-medium leading-snug text-warm-black sm:text-4xl">
+          <h2 className="font-serif text-3xl font-medium leading-snug text-warm-black sm:text-4xl mb-16">
             The questions you&rsquo;re likely already asking.
           </h2>
-          <p className="label label-on-light mt-6 mb-16">Common Questions</p>
         </ScrollReveal>
 
         <div>

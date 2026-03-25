@@ -26,7 +26,7 @@ export default function Hero({ onApplyClick }: HeroProps) {
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <button
                 onClick={onApplyClick}
-                className="inline-flex items-center justify-center rounded-sm bg-warm-black px-7 py-3.5 font-sans text-sm font-medium tracking-wide text-cream transition-all hover:bg-warm-black-light"
+                className="inline-flex items-center justify-center rounded-sm border border-warm-black bg-warm-black px-7 py-3.5 font-sans text-sm font-medium tracking-wide text-cream transition-all hover:border-gold hover:bg-gold hover:text-warm-black"
               >
                 See if you qualify
               </button>

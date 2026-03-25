@@ -48,7 +48,11 @@ export default function Navigation({ onApplyClick, darkHero }: NavigationProps) 
             </a>
             <button
               onClick={onApplyClick}
-              className="rounded-sm border border-gold/40 px-5 py-2 font-sans text-sm font-medium text-gold-dark transition-all hover:border-gold hover:bg-gold/5"
+              className={`rounded-sm border px-5 py-2 font-sans text-sm font-medium transition-all ${
+                onDark
+                  ? "bg-gold border-gold text-warm-black hover:bg-gold-light hover:border-gold-light"
+                  : "bg-warm-black border-warm-black text-cream hover:bg-gold hover:border-gold hover:text-warm-black"
+              }`}
             >
               Apply
             </button>

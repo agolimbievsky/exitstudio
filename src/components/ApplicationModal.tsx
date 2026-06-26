@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 interface FormData {
   firstName: string;
   company: string;
+  companyWebsite: string;
   email: string;
   phone: string;
   monthlyRevenue: string;
@@ -20,6 +21,7 @@ interface ApplicationModalProps {
 const initialFormData: FormData = {
   firstName: "",
   company: "",
+  companyWebsite: "",
   email: "",
   phone: "",
   monthlyRevenue: "",
@@ -33,6 +35,7 @@ const initialFormData: FormData = {
 const REQUIRED_FIELDS: { name: keyof FormData; label: string }[] = [
   { name: "firstName", label: "First Name" },
   { name: "company", label: "Company" },
+  { name: "companyWebsite", label: "Company website" },
   { name: "email", label: "Email" },
   { name: "monthlyRevenue", label: "Current monthly revenue" },
   { name: "businessModel", label: "Business model" },
@@ -288,6 +291,21 @@ export default function ApplicationModal({
                       value={formData.company}
                       onChange={handleChange}
                       required
+                      className={`${inputClass} border-white/15`}
+                    />
+                  </div>
+
+                  {/* Company website */}
+                  <div>
+                    <label className={labelClass}>Company website</label>
+                    <input
+                      type="text"
+                      name="companyWebsite"
+                      value={formData.companyWebsite}
+                      onChange={handleChange}
+                      required
+                      inputMode="url"
+                      placeholder="yourcompany.com"
                       className={`${inputClass} border-white/15`}
                     />
                   </div>

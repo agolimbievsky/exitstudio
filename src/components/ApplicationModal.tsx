@@ -27,6 +27,18 @@ const initialFormData: FormData = {
   bottleneck: "",
 };
 
+// Every field except phone is required. The form uses noValidate (to keep the
+// custom email error styling), so we validate these in JS. Order matches the
+// visual field order, so "first empty" focuses the topmost incomplete field.
+const REQUIRED_FIELDS: { name: keyof FormData; label: string }[] = [
+  { name: "firstName", label: "First Name" },
+  { name: "company", label: "Company" },
+  { name: "email", label: "Email" },
+  { name: "monthlyRevenue", label: "Current monthly revenue" },
+  { name: "businessModel", label: "Business model" },
+  { name: "bottleneck", label: "What's bottlenecking your growth" },
+];
+
 const labelClass =
   "mb-2 block font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-gray";
 
@@ -58,6 +70,7 @@ export default function ApplicationModal({
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [emailError, setEmailError] = useState("");
+  const [formError, setFormError] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
 
@@ -76,6 +89,7 @@ export default function ApplicationModal({
         setFormData(initialFormData);
         setStatus("idle");
         setEmailError("");
+        setFormError("");
       }, 300);
       return () => clearTimeout(t);
     }
@@ -135,10 +149,24 @@ export default function ApplicationModal({
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     if (e.target.name === "email") setEmailError("");
+    if (formError) setFormError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Required-field check. Focus the first empty field and show a clear
+    // message, rather than submitting and getting a generic server 400.
+    const firstEmpty = REQUIRED_FIELDS.find((f) => !formData[f.name].trim());
+    if (firstEmpty) {
+      setFormError(`Please complete the "${firstEmpty.label}" field.`);
+      scrollRef.current
+        ?.querySelector<HTMLElement>(`[name="${firstEmpty.name}"]`)
+        ?.focus();
+      return;
+    }
+    setFormError("");
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setEmailError("Please enter a valid email address.");
@@ -383,6 +411,11 @@ export default function ApplicationModal({
                       )}
                     </button>
 
+                    {formError && (
+                      <p className="mt-4 text-center font-body text-xs leading-relaxed text-red-400">
+                        {formError}
+                      </p>
+                    )}
                     {status === "error" && (
                       <p className="mt-4 text-center font-body text-xs leading-relaxed text-red-400">
                         Something went wrong. Please try again or email us

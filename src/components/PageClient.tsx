@@ -3,8 +3,10 @@
 import { useState } from "react";
 import Navigation from "./Navigation";
 import Hero from "./Hero";
+import Stats from "./Stats";
 import WhyThisModelExists from "./WhyThisModelExists";
 import WhatWeActuallyDo from "./WhatWeActuallyDo";
+import WhatWeInstall from "./WhatWeInstall";
 import HowItWorks from "./HowItWorks";
 import Founders from "./Founders";
 import TheLongGame from "./TheLongGame";
@@ -20,11 +22,13 @@ export default function PageClient() {
 
   return (
     <>
-      <Navigation onApplyClick={openModal} darkHero={true} />
+      <Navigation onApplyClick={openModal} />
       <main>
         <Hero onApplyClick={openModal} />
+        <Stats />
         <WhyThisModelExists />
         <WhatWeActuallyDo />
+        <WhatWeInstall />
         <HowItWorks />
         <Founders />
         <TheLongGame />

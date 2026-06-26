@@ -1,26 +1,29 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Archivo, Inter_Tight } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "ExitStudio | Growth Partnership Firm",
   description:
-    "We scale proven businesses by betting our own capital, teams, and systems. We only win when you do.",
+    "We scale proven businesses by investing our own capital, teams, and systems. No fees. No retainers. We only win when you do.",
+  icons: {
+    icon: "/favicon-256.png",
+  },
 };
 
 export default function RootLayout({
@@ -29,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${interTight.variable}`}>
       <body className="min-h-screen antialiased">{children}</body>
 
       {/* Google Analytics 4 */}

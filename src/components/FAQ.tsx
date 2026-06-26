@@ -6,7 +6,11 @@ import ScrollReveal from "./ScrollReveal";
 const faqs = [
   {
     q: "What does the deal structure actually look like?",
-    a: "Every partnership is different. Typically, we earn equity through performance milestones, a revenue share on growth above your baseline, or a structured combination of both. We never take a cut of what you built before we arrived. We will propose something clear and specific in our first conversation.",
+    a: "Every partnership is different. Typically, we earn equity through performance milestones, a revenue share on growth above your baseline, or a structured combination of both. When growth calls for it, we also invest our own capital directly to fund things like inventory, hiring, and paid media. We never take a cut of what you built before we arrived. We will propose something clear and specific in our first conversation.",
+  },
+  {
+    q: "Do you invest cash, or just operators?",
+    a: "Both. For most of our history we earned purely through embedded operators and systems. Now we also deploy direct capital when it accelerates growth: funding inventory, hiring, paid media, or whatever the specific bottleneck requires. The capital comes with the same operators and the same accountability. We are partners putting money and people behind the same projections, not a fund writing a check and waiting.",
   },
   {
     q: "What do you need from me as a founder?",
@@ -27,52 +31,61 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-cream py-28 sm:py-36 lg:py-44">
-      <div className="mx-auto max-w-3xl px-6 lg:px-12">
+    <section className="bg-card px-6 py-[clamp(72px,12vh,140px)] sm:px-10 lg:px-20">
+      <div className="mx-auto max-w-[1000px]">
         <ScrollReveal>
-          <h2 className="font-serif text-3xl font-medium leading-snug text-warm-black sm:text-4xl mb-16">
+          <h2 className="mb-[clamp(36px,5vh,56px)] max-w-[20ch] font-display text-[clamp(26px,3.6vw,46px)] font-bold leading-[1.1] tracking-[-0.03em] text-ink">
             The questions you&rsquo;re likely already asking.
           </h2>
         </ScrollReveal>
 
-        <div>
-          {faqs.map((faq, i) => (
-            <ScrollReveal key={i}>
-              <div className="border-t border-warm-black/10">
-                <button
-                  className="flex w-full items-start justify-between gap-6 py-7 text-left"
-                  onClick={() => setOpen(open === i ? null : i)}
-                  aria-expanded={open === i}
-                >
-                  <span className="font-serif text-xl font-medium text-warm-black sm:text-2xl">
-                    {faq.q}
-                  </span>
-                  <span
-                    className={`mt-1.5 flex-shrink-0 font-sans text-xl text-gold-dark transition-transform duration-200 ${
-                      open === i ? "rotate-45" : ""
-                    }`}
-                    aria-hidden="true"
+        <ScrollReveal>
+          <div>
+            {faqs.map((faq, i) => {
+              const isOpen = open === i;
+              return (
+                <div key={i} className="border-t border-card-line last:border-b">
+                  <button
+                    className="flex w-full items-center justify-between gap-6 py-[clamp(22px,3vh,30px)] text-left"
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${i}`}
                   >
-                    +
-                  </span>
-                </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    open === i ? "max-h-96 pb-7" : "max-h-0"
-                  }`}
-                >
-                  <p className="font-sans text-base leading-relaxed text-muted-light">
-                    {faq.a}
-                  </p>
+                    <span className="font-display text-[clamp(17px,1.7vw,23px)] font-semibold tracking-[-0.01em] text-ink">
+                      {faq.q}
+                    </span>
+                    <span
+                      className={`flex-none font-body text-[28px] font-light leading-none text-gray transition-transform duration-[400ms] ease-[cubic-bezier(.16,1,.3,1)] ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </button>
+                  <div
+                    id={`faq-panel-${i}`}
+                    aria-hidden={!isOpen}
+                    className={`grid transition-all duration-[550ms] ease-[cubic-bezier(.16,1,.3,1)] ${
+                      isOpen
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="max-w-[74ch] pb-[30px] font-body text-[clamp(15px,1.2vw,17px)] leading-[1.64] text-text-muted">
+                        {faq.a}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
-          <div className="border-t border-warm-black/10" />
-        </div>
+              );
+            })}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

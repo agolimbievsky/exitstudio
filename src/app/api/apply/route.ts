@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const NOTIFY_EMAILS = [
   "kanishka@yamumedia.com",
   "agolimbievsky@gmail.com",
@@ -23,16 +21,23 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("[ExitStudio] RESEND_API_KEY is not set");
+    return NextResponse.json({ error: "Email service not configured" }, { status: 500 });
+  }
+  const resend = new Resend(apiKey);
+
   try {
     await resend.emails.send({
       from: "ExitStudio Applications <applications@exitstudio.vc>",
       to: NOTIFY_EMAILS,
       replyTo: email,
-      subject: `New application — ${firstName} at ${company}`,
+      subject: `New application: ${firstName} at ${company}`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px 24px; color: #1a1714;">
           <p style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #7a7168; margin-bottom: 32px;">
-            ExitStudio — New Application
+            ExitStudio: New Application
           </p>
 
           <h2 style="font-size: 24px; font-weight: 400; margin: 0 0 4px 0;">

@@ -2,32 +2,45 @@
 
 import ScrollReveal from "./ScrollReveal";
 
+const NOISE =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E\")";
+
 export default function TheLongGame() {
   return (
     <section
       id="constitution"
-      className="bg-warm-black py-28 sm:py-36 lg:py-44"
+      className="relative overflow-hidden bg-ink px-6 py-[clamp(80px,15vh,170px)] text-white sm:px-10 lg:px-20"
     >
-      <div className="mx-auto max-w-3xl px-6 text-center lg:px-12">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
+        style={{ backgroundImage: NOISE }}
+      />
+      <div
+        className="pointer-events-none absolute h-[900px] w-[900px]"
+        style={{
+          bottom: "-30%",
+          right: "-5%",
+          background:
+            "radial-gradient(circle, rgba(255,255,255,0.06), transparent 62%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-[1100px]">
         <ScrollReveal>
-          <p className="label mb-10">The Long Game</p>
+          <p className="eyebrow-on-dark">The Long Game</p>
         </ScrollReveal>
 
         <ScrollReveal delay={1}>
-          <h2 className="font-serif text-3xl font-medium leading-snug text-text-on-dark sm:text-4xl lg:text-5xl">
-            We&rsquo;re not just scaling companies.
+          <h2 className="mt-[clamp(30px,5vh,52px)] max-w-[22ch] font-display text-[clamp(30px,4.6vw,62px)] font-bold leading-[1.08] tracking-[-0.03em]">
+            We&rsquo;re not just scaling companies.{" "}
+            <span className="text-gray">
+              We&rsquo;re building something that compounds beyond any single
+              exit.
+            </span>
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={2}>
-          <h2 className="mt-4 font-serif text-3xl font-medium leading-snug text-text-on-dark sm:text-4xl lg:text-5xl">
-            We&rsquo;re building something that compounds beyond any single
-            exit.
-          </h2>
-        </ScrollReveal>
-
-        <ScrollReveal delay={3}>
-          <p className="mx-auto mt-10 max-w-xl font-sans text-base leading-relaxed text-muted-dark">
+          <p className="mt-[clamp(28px,4vh,40px)] max-w-[60ch] font-body text-[clamp(17px,1.4vw,20px)] leading-[1.6] text-body-dark">
             The Constitution is our operating system: what we believe about
             business, growth, and human cooperation. If you think in decades,
             it&rsquo;s worth reading.
@@ -35,17 +48,15 @@ export default function TheLongGame() {
         </ScrollReveal>
 
         <ScrollReveal delay={3}>
-          <div className="mx-auto mt-10 mb-0">
-            <a
-              href="/constitution"
-              className="group inline-flex items-center gap-3 font-serif text-lg text-gold transition-colors hover:text-gold-light"
-            >
-              Read the Constitution
-              <span className="transition-transform group-hover:translate-x-1">
-                &rarr;
-              </span>
-            </a>
-          </div>
+          <a
+            href="/constitution"
+            className="group mt-[clamp(32px,4vh,44px)] inline-flex items-center gap-2 border-b border-ink-line pb-1 font-body text-base font-semibold text-white transition-all hover:border-white"
+          >
+            Read the Constitution
+            <span className="text-gray transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </a>
         </ScrollReveal>
       </div>
     </section>

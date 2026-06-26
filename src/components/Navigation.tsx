@@ -59,7 +59,7 @@ export default function Navigation({ onApplyClick, dark }: NavigationProps) {
         <div className="flex items-center gap-4 sm:gap-6 lg:gap-8">
           <Link
             href={secondary.href}
-            className={`font-body text-[15px] font-medium transition-colors ${
+            className={`inline-flex min-h-[44px] items-center font-body text-[15px] font-medium transition-colors ${
               onDark
                 ? "text-muted-dark hover:text-white"
                 : "text-ink/80 hover:text-ink"

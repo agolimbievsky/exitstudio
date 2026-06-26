@@ -19,6 +19,16 @@ export default function ScrollReveal({
     const el = ref.current;
     if (!el) return;
 
+    // Reveal immediately for reduced-motion users, or where IntersectionObserver
+    // is unavailable, so content is never gated behind an animation it can't run.
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion || typeof IntersectionObserver === "undefined") {
+      el.classList.add("revealed");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -30,7 +40,19 @@ export default function ScrollReveal({
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Safety net: if no intersection event ever fires (deep-link landing far down
+    // the page, print to PDF, headless render), reveal so content is never stuck
+    // invisible. Long enough not to pre-empt the animation during normal scrolling.
+    const fallback = window.setTimeout(() => {
+      el.classList.add("revealed");
+      observer.disconnect();
+    }, 2500);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
 
   const delayClass = delay > 0 ? `reveal-delay-${delay}` : "";
